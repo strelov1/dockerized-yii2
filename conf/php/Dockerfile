@@ -18,10 +18,14 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     /usr/local/bin/composer global require "fxp/composer-asset-plugin"
 
-RUN composer config -g github-oauth.github.com <code>
+ENV GITHUB_TOKEN <replace token>
 
-RUN git clone https://github.com/strelov1/yii-app.git /var/www/code
+RUN composer config -g github-oauth.github.com ${GITHUB_TOKEN}
 
-RUN cd /var/www/code && composer update && php init
+RUN mkdir -p /var/www/code/
+
+COPY ./code/ /var/www/code
+
+RUN cd /var/www/code && composer update
 
 WORKDIR /var/www/code/

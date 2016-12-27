@@ -6,8 +6,8 @@ services:
         volumes:
             - ./db:/var/lib/mysql
         environment:
-            MYSQL_ROOT_PASSWORD: 123456
-            MYSQL_DATABASE: db
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: yii2basic
             MYSQL_USER: web
             MYSQL_PASSWORD: web
         ports:
